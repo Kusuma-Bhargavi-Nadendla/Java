@@ -1,97 +1,73 @@
+import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
-
-public class CalculatorExample extends Frame implements ActionListener{
-    TextField txt1, txt2, txt3;
-    Button btnAdd, btnSub, btnMul, btnDiv, btnClear, btnExit; 
-
-    public CalculatorExample(){
-        super("Simple calculator Application");
-        setBounds(100, 100, 300, 300);
-        setLayout(new GridLayout(6, 2, 5, 5));
-
-        add(new Label("First Number "));
-        txt1 = new TextField();
-        add(txt1);
-
-        add(new Label("Second Number "));
-        txt2 = new TextField();
-        add(txt2);
-
-        add(new Label("Result "));
-        txt3 = new TextField();
-        add(txt3);
-
-        btnAdd = new Button("Adition");
-        btnAdd.addActionListener(this);
-        add(btnAdd);
-
-        btnSub = new Button("Subtraction");
-        btnSub.addActionListener(this);
-        add(btnSub);
-
-        btnMul = new Button("Multiply");
-        btnMul.addActionListener(this);
-        add(btnMul);
-
-        btnDiv = new Button("Division");
-        btnDiv.addActionListener(this);
-        add(btnDiv);
-
-        btnClear = new Button("Clear");
-        btnClear.addActionListener(this);
-        add(btnClear);
-
-        btnExit = new Button("Exit");
-        btnExit.addActionListener(this);
-        add(btnExit);
-
-        addWindowListener(new WindowAdapter(){
-            public void windowClosing(WindowEvent we){
-                System.exit(0);
-            }
-        });
-        setVisible(true);
-    }
-
-    public Insets getInsets(){
-        return new Insets(40, 10, 10, 10);
-    }
-
-    public void actionPerformed(ActionEvent ae){
-        float x=0, y=0, z=0;
-        try{
-            x = Float.parseFloat(txt1.getText());
-            y = Float.parseFloat(txt2.getText());
-        }catch(Exception e){
-            System.out.println(e);
-        }
-        if(ae.getSource()==btnAdd){
-            z = x + y;
-            txt3.setText(String.valueOf(z));
-        } 
-        else if(ae.getSource()==btnSub){
-            z = x - y;
-            txt3.setText(String.valueOf(z));
-        }
-        else if(ae.getSource()==btnMul){
-            z = x * y;
-            txt3.setText(String.valueOf(z));
-        }
-        else if(ae.getSource()==btnDiv){
-            z = x / y;
-            txt3.setText(String.valueOf(z));
-        }
-        else if(ae.getSource()==btnClear){
-            txt1.setText("");
-            txt2.setText("");
-            txt3.setText("");
-        } 
-        else
-        System.exit(0);;
-
-    }
-    public static void main(String[] args) {
-        new CalculatorExample();
-    }
+class Calculator extends JFrame implements ActionListener{
+   JLabel l1,l2,l3;
+   JTextField t1,t2,t3;
+   JButton b1,b2,b3,b4,b5,b6;
+    public Calculator(){
+       super("Simple Calculator");
+       setBounds(100,100,400,300);
+       setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+       setLayout(new GridLayout(6,2,10,10));
+       l1=new JLabel("Enter First Number:");
+       add(l1);
+       t1=new JTextField();
+       add(t1);
+       l2=new JLabel("Enter Second Number:");
+       add(l2);
+       t2=new JTextField();
+       add(t2);
+       l3=new JLabel("Result:");
+       add(l3);
+       t3=new JTextField();
+       add(t3);
+       
+        b1=new JButton("ADD");
+       b1.addActionListener(this);
+       add(b1);
+        b2=new JButton("SUBTRACT");
+       b2.addActionListener(this);
+       add(b2);
+        b3=new JButton("MULTIPLY");
+       b3.addActionListener(this);
+       add(b3);
+        b4=new JButton("DIVIDE");
+       b4.addActionListener(this);
+       add(b4);
+        b5=new JButton("CLEAR");
+       b5.addActionListener(this);
+       add(b5);
+        b6=new JButton("EXIT");
+       b6.addActionListener(this);
+       add(b6);
+       setVisible(true);
 }
+public void actionPerformed(ActionEvent ae){
+        if(ae.getSource()==b6)
+            System.exit(0);
+       
+       int x=Integer.parseInt(t1.getText());
+       int y=Integer.parseInt(t2.getText());
+       if(ae.getSource()==b1)
+            t3.setText(String.valueOf(x+y));
+       else if(ae.getSource()==b2)
+            t3.setText(String.valueOf(x-y));
+       else if(ae.getSource()==b3)
+            t3.setText(String.valueOf(x*y));
+       else if(ae.getSource()==b4)
+            t3.setText(String.valueOf(x/y));
+       else if(ae.getSource()==b5){
+            t1.setText(new String());
+            t2.setText(new String());
+            t3.setText(new String());
+       }
+      
+  }
+
+public static void main(String[] args){
+   new Calculator();
+}
+}
+
+       
